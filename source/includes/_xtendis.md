@@ -36,6 +36,12 @@ This endpoint validate Creditor information.
 
 `POST https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate`
 
+### Headers
+Key | Value | Description
+--------- | ------- | -----------
+Authorization | {{jwtToken}} | Token
+
+
 ### Query Parameters
 
 Parameter | Type | Description
