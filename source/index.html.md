@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: SFS Finance Centre API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - xtendis
+  - exact
   - errors
 
 search: true

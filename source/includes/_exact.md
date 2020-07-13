@@ -1,6 +1,6 @@
-# Xtendis
+# Exact
 
-## Creditor Validation API
+## Debtor Creating API
 
 ```shell
 curl "https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate"
@@ -59,7 +59,7 @@ Notice
     - If remove first number, the rest has to greater than 0.
     - Maximum 10 characters
 
-## Blockcode Validation API
+## Debtor Updating API
 
 ```shell
 curl "https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate"
@@ -112,7 +112,8 @@ Notice
     - If remove first number, the rest has to greater than 0.
     - Maximum 10 characters
 
-## Invoice creation API
+
+## Debtor Finding API
 
 ```shell
 curl "https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate"
@@ -164,3 +165,5 @@ Notice
     - Should be started with one of numbers 7, 8, 9.
     - If remove first number, the rest has to greater than 0.
     - Maximum 10 characters
+
+
