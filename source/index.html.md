@@ -10,8 +10,12 @@ toc_footers:
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - xtendis
-  - exact
+  - exact_creditor
+  - exact_debtor
+  - exact_purchase
+  - exact_sale
+  - invoice
+  - user
   - errors
 
 search: true
