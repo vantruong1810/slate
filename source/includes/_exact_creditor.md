@@ -241,7 +241,7 @@ This endpoint Update Creditor information.
 
 ### HTTP Request
 
-`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts`
+`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}`
 
 ### Query Parameters
 Parameter | Type | Description

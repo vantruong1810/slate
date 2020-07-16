@@ -228,7 +228,7 @@ let kittens = api.kittens.get();
 This endpoint Update Debtor information.
 ### HTTP Request
 
-`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}/bank-accounts`
+`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}`
 
 ### Query Parameters
 Parameter | Type | Description
