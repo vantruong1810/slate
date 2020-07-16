@@ -241,7 +241,7 @@ This endpoint Update Creditor information.
 
 ### HTTP Request
 
-`POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts`
+`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts`
 
 ### Query Parameters
 Parameter | Type | Description
@@ -253,7 +253,15 @@ CreditorID | Number | The SFS Creditor ID (existing in SFS 360 system)
 Parameter | Type | Description
 --------- | ------- | -----------
 AdmNr | Number | Administration number 
-Name | String | Name
+Name | String | Name (Optional)
+SearchCode | String | Search Code (Optional)
+Country | String | Country (ISO land code) (Optional)
+PostalCode | String | Postal Code (Optional)
+Address1 | String | Address (Optional)
+City | String | City (Optional)
+Telephone | String | Telephone Number (Optional)
+Category | String | Creditor category (Optional)
+ContactEmail | String | Email Address (Optional)
 BankInfo.BankAccType | String | Bank type - IBA or INT 
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
