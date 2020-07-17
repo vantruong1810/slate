@@ -171,7 +171,7 @@ Notice
     - Minimum 7 characters
     - Maximum 10 characters
 
-## Debtor Update Bank Account API
+## Debtor Update Information With Bank Account API
 
 ```shell
 curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}/bank-accounts"
@@ -225,7 +225,7 @@ let kittens = api.kittens.get();
 }
 ```
 
-This endpoint Update Debtor information.
+This endpoint Update Debtor information (With Bank Account).
 ### HTTP Request
 
 `PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}`
@@ -248,6 +248,7 @@ Address1 | String | Address (Optional)
 City | String | City (Optional)
 Telephone | String | Telephone Number (Optional)
 Email | String | Email Address (Optional)
+BankInfo | Array Object | List Bank Account (Optional)
 BankInfo.BankAccType | String | Bank type - IBA or INT 
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
@@ -269,6 +270,11 @@ Notice
     - INT = International number (Without validation check)
 - `Primary`
     - Fixed value: 203201 
+
+- `BankInfo`
+    - If the request has BankInfo, the BankAccNr, BankAccNr, BankCurrCode, BankTypePrimary, BankName, BankSwiftAddress must be required.
+
+- `AdmNr` must be required if the request has any params in the body parameters.
 
 ## Debtor Find API
 
