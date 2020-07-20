@@ -3,7 +3,7 @@
 ## Debtor Create API
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/debtors"
   -H "Authorization: token_xxx"
 ```
 
@@ -48,7 +48,7 @@ This endpoint Create A Debtor.
 
 ### HTTP Request
 
-`POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors`
+`POST https://fc-api.test.financecenter.sfs360.io/api/v1/debtors`
 
 ### Headers
 Key | Value | Description
@@ -70,6 +70,7 @@ Address1 | String | Address
 City | String | City
 Telephone | String | Telephone Number (Optional)
 Email | String | Email Address (Optional)
+BankInfo | Object | Bank information
 BankInfo.BankAccType | String | Bank type - IBA or INT
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
@@ -92,10 +93,10 @@ Notice
 - `Primary`
     - Fixed value: 203201 
 
-## Debtor Update API
+## Debtor Update API (Put)
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}"
   -H "Authorization: token_xxx"
 ```
 
@@ -123,24 +124,26 @@ let kittens = api.kittens.get();
         "City": "Delf t",
         "Telephone": "+31 157115100",
         "Email": "info@exact.com",
-        "BankInfo": {
-          "BankAccType": "IBA",
-          "BankAccNr": "NL20RABO9038954298",
-          "BankCurrCode": "EUR",
-          "BankTypePrimary": 203201,
-          "BankName": "Rabo bank",
-          "BankSwiftAddress": "RABONL2U",
-        },
+        "BankInfo": [
+          {
+            "BankAccType": "IBA",
+            "BankAccNr": "NL20RABO9038954298",
+            "BankCurrCode": "EUR",
+            "BankTypePrimary": 203201,
+            "BankName": "Rabo bank",
+            "BankSwiftAddress": "RABONL2U",
+          }
+        ]
       },
     ],
 }
 ```
 
-This endpoint Update Debtor information (Without Bank Account Information)
+This endpoint Update Debtor information.
 
 ### HTTP Request
 
-`PUT https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}`
+`PUT https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}`
 
 ### Query Parameters
 Parameter | Type | Description
@@ -160,6 +163,13 @@ Address1 | String | Address
 City | String | City
 Telephone | String | Telephone Number (Optional)
 Email | String | Email Address (Optional)
+BankInfo | Object | Bank information
+BankInfo.BankAccType | String | Bank type - IBA or INT
+BankInfo.BankAccNr | String | Bank account number 
+BankInfo.BankCurrCode | String | Currency code 
+BankInfo.BankTypePrimary | Number | Primary
+BankInfo.BankName | String | Bank name 
+BankInfo.BankSwiftAddress | String | Bic/Swift code 
 
 <aside class="notice">
 Notice
@@ -171,10 +181,10 @@ Notice
     - Minimum 7 characters
     - Maximum 10 characters
 
-## Debtor Update Information With Bank Account API
+## Debtor Update Information (Patch)
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}/bank-accounts"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}/bank-accounts"
   -H "Authorization: token_xxx"
 ```
 
@@ -228,7 +238,7 @@ let kittens = api.kittens.get();
 This endpoint Update Debtor information (With Bank Account).
 ### HTTP Request
 
-`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}`
+`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}`
 
 ### Query Parameters
 Parameter | Type | Description
@@ -248,7 +258,7 @@ Address1 | String | Address (Optional)
 City | String | City (Optional)
 Telephone | String | Telephone Number (Optional)
 Email | String | Email Address (Optional)
-BankInfo | Array Object | List Bank Account (Optional)
+BankInfo | Object | List Bank Account (Optional)
 BankInfo.BankAccType | String | Bank type - IBA or INT 
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
