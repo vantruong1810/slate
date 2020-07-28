@@ -347,18 +347,13 @@
               </ul>
           </li>
           <li>
-            <a href="#exact-gt-purchase-jounal" class="toc-h1 toc-link" data-title="Exact &gt; Purchase Jounal">Exact &gt; Purchase Jounal</a>
+            <a href="#exact" class="toc-h1 toc-link" data-title="Exact">Exact</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#purchase-create-api" class="toc-h2 toc-link" data-title="Purchase Create API">Purchase Create API</a>
+                    <a href="#purchase-creating-api" class="toc-h2 toc-link" data-title="Purchase Creating API">Purchase Creating API</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#exact-gt-sale-jounal" class="toc-h1 toc-link" data-title="Exact &gt; Sale Jounal">Exact &gt; Sale Jounal</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#sale-create-api" class="toc-h2 toc-link" data-title="Sale Create API">Sale Create API</a>
+                    <a href="#sale-creating-api" class="toc-h2 toc-link" data-title="Sale Creating API">Sale Creating API</a>
                   </li>
               </ul>
           </li>
@@ -366,7 +361,7 @@
             <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#invoices-add-api" class="toc-h2 toc-link" data-title="Invoices Add API">Invoices Add API</a>
+                    <a href="#invoices-adding-api" class="toc-h2 toc-link" data-title="Invoices Adding API">Invoices Adding API</a>
                   </li>
               </ul>
           </li>
@@ -1664,7 +1659,7 @@ Notice
 <li>Maximum 10 characters </li>
 </ul></li>
 </ul>
-<h1 id='exact-gt-purchase-jounal'>Exact &gt; Purchase Jounal</h1><h2 id='purchase-create-api'>Purchase Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/purchases"</span>
+<h1 id='exact'>Exact</h1><h2 id='purchase-creating-api'>Purchase Creating API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/purchases"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -1869,7 +1864,75 @@ Notice
 <li>Maximum 10 characters</li>
 </ul></li>
 </ul>
-<h1 id='exact-gt-sale-jounal'>Exact &gt; Sale Jounal</h1><h2 id='sale-create-api'>Sale Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/sales"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"CreditorID"</span><span class="p">:</span><span class="w"> </span><span class="mi">6572495920</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"VatNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL22927920-B02"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"SepaNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DZ580002100001113000000570"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"CreditorStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint validate Creditor information.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/xtendis/creditors/validate</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CreditorID</td>
+<td>Number</td>
+<td>The SFS Creditor ID (existing in SFS 360 system)</td>
+</tr>
+<tr>
+<td>CreditorName</td>
+<td>String</td>
+<td>The SFS Creditor name</td>
+</tr>
+<tr>
+<td>VatNumber</td>
+<td>String</td>
+<td>The VAT number of the creditor (existing in SFS 360 system)</td>
+</tr>
+<tr>
+<td>SepaNumber</td>
+<td>Number</td>
+<td>The SEPA banknumber of the creditor</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Notice
+</aside>
+
+<ul>
+<li><code>CreditorID</code>
+
+<ul>
+<li>Should be started with one of numbers 7, 8, 9.</li>
+<li>If remove first number, the rest has to greater than 0.</li>
+<li>Maximum 10 characters</li>
+</ul></li>
+</ul>
+<h2 id='sale-creating-api'>Sale Creating API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/sales"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -1907,9 +1970,9 @@ Notice
   </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint Create A Sale Jounal.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/sales</code></p>
-<h3 id='headers'>Headers</h3>
+<h3 id='headers-2'>Headers</h3>
 <table><thead>
 <tr>
 <th>Key</th>
@@ -1923,7 +1986,7 @@ Notice
 <td>Token</td>
 </tr>
 </tbody></table>
-<h3 id='body-parameters'>Body Parameters</h3>
+<h3 id='body-parameters-2'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2050,7 +2113,7 @@ Notice
 <li>Maximum 10 characters</li>
 </ul></li>
 </ul>
-<h1 id='invoices'>Invoices</h1><h2 id='invoices-add-api'>Invoices Add API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"</span>
+<h1 id='invoices'>Invoices</h1><h2 id='invoices-adding-api'>Invoices Adding API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
