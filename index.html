@@ -319,10 +319,10 @@
                     <a href="#creditor-create-api" class="toc-h2 toc-link" data-title="Creditor Create API">Creditor Create API</a>
                   </li>
                   <li>
-                    <a href="#creditor-update-api" class="toc-h2 toc-link" data-title="Creditor Update API">Creditor Update API</a>
+                    <a href="#creditor-update-api-put" class="toc-h2 toc-link" data-title="Creditor Update API (Put)">Creditor Update API (Put)</a>
                   </li>
                   <li>
-                    <a href="#creditor-update-bank-account-api" class="toc-h2 toc-link" data-title="Creditor Update Bank Account API">Creditor Update Bank Account API</a>
+                    <a href="#creditor-update-information-patch" class="toc-h2 toc-link" data-title="Creditor Update Information (Patch)">Creditor Update Information (Patch)</a>
                   </li>
                   <li>
                     <a href="#creditor-find-api" class="toc-h2 toc-link" data-title="Creditor Find API">Creditor Find API</a>
@@ -336,10 +336,10 @@
                     <a href="#debtor-create-api" class="toc-h2 toc-link" data-title="Debtor Create API">Debtor Create API</a>
                   </li>
                   <li>
-                    <a href="#debtor-update-api" class="toc-h2 toc-link" data-title="Debtor Update API">Debtor Update API</a>
+                    <a href="#debtor-update-api-put" class="toc-h2 toc-link" data-title="Debtor Update API (Put)">Debtor Update API (Put)</a>
                   </li>
                   <li>
-                    <a href="#debtor-update-bank-account-api" class="toc-h2 toc-link" data-title="Debtor Update Bank Account API">Debtor Update Bank Account API</a>
+                    <a href="#debtor-update-information-patch" class="toc-h2 toc-link" data-title="Debtor Update Information (Patch)">Debtor Update Information (Patch)</a>
                   </li>
                   <li>
                     <a href="#debtor-find-api" class="toc-h2 toc-link" data-title="Debtor Find API">Debtor Find API</a>
@@ -461,7 +461,7 @@ curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/{path}
 <aside class="notice">
 You must replace <code>token_xxx</code> with your personal API key.
 </aside>
-<h1 id='exact-gt-creditor'>Exact &gt; Creditor</h1><h2 id='creditor-create-api'>Creditor Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors"</span>
+<h1 id='exact-gt-creditor'>Exact &gt; Creditor</h1><h2 id='creditor-create-api'>Creditor Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/creditors"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -500,7 +500,7 @@ You must replace <code>token_xxx</code> with your personal API key.
 </span></code></pre></div>
 <p>This endpoint Create A Creditor.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors</code></p>
+<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/creditors</code></p>
 <h3 id='headers'>Headers</h3>
 <table><thead>
 <tr>
@@ -641,7 +641,7 @@ Notice
 <li>Fixed value: 203201 </li>
 </ul></li>
 </ul>
-<h2 id='creditor-update-api'>Creditor Update API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{creditorID}"</span>
+<h2 id='creditor-update-api-put'>Creditor Update API (Put)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{creditorID}"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -680,7 +680,7 @@ Notice
 </span></code></pre></div>
 <p>This endpoint Update Creditor information (Without Bank Account Information)</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>PUT https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}</code></p>
+<p><code>PUT https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -753,6 +753,41 @@ Notice
 <td>String</td>
 <td>Email Address (Optional)</td>
 </tr>
+<tr>
+<td>BankInfo</td>
+<td>Object</td>
+<td>List Bank Account (Optional)</td>
+</tr>
+<tr>
+<td>BankInfo.BankAccType</td>
+<td>String</td>
+<td>Bank type - IBA or INT</td>
+</tr>
+<tr>
+<td>BankInfo.BankAccNr</td>
+<td>String</td>
+<td>Bank account number</td>
+</tr>
+<tr>
+<td>BankInfo.BankCurrCode</td>
+<td>String</td>
+<td>Currency code</td>
+</tr>
+<tr>
+<td>BankInfo.BankTypePrimary</td>
+<td>Number</td>
+<td>Primary</td>
+</tr>
+<tr>
+<td>BankInfo.BankName</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>BankInfo.BankSwiftAddress</td>
+<td>String</td>
+<td>Bic/Swift code</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
@@ -775,7 +810,7 @@ Notice
 <li>HANDEL = all other creditors</li>
 </ul></li>
 </ul>
-<h2 id='creditor-update-bank-account-api'>Creditor Update Bank Account API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts"</span>
+<h2 id='creditor-update-information-patch'>Creditor Update Information (Patch)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -824,7 +859,7 @@ Notice
 </span></code></pre></div>
 <p>This endpoint Update Creditor information.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts</code></p>
+<p><code>PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -855,7 +890,52 @@ Notice
 <tr>
 <td>Name</td>
 <td>String</td>
-<td>Name</td>
+<td>Name (Optional)</td>
+</tr>
+<tr>
+<td>SearchCode</td>
+<td>String</td>
+<td>Search Code (Optional)</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>String</td>
+<td>Country (ISO land code) (Optional)</td>
+</tr>
+<tr>
+<td>PostalCode</td>
+<td>String</td>
+<td>Postal Code (Optional)</td>
+</tr>
+<tr>
+<td>Address1</td>
+<td>String</td>
+<td>Address (Optional)</td>
+</tr>
+<tr>
+<td>City</td>
+<td>String</td>
+<td>City (Optional)</td>
+</tr>
+<tr>
+<td>Telephone</td>
+<td>String</td>
+<td>Telephone Number (Optional)</td>
+</tr>
+<tr>
+<td>Category</td>
+<td>String</td>
+<td>Creditor category (Optional)</td>
+</tr>
+<tr>
+<td>ContactEmail</td>
+<td>String</td>
+<td>Email Address (Optional)</td>
+</tr>
+<tr>
+<td>BankInfo</td>
+<td>Object</td>
+<td>List Bank Account (Optional)</td>
 </tr>
 <tr>
 <td>BankInfo.BankAccType</td>
@@ -908,11 +988,17 @@ Notice
 <li>IBA = International Bank Account number (With validation check)</li>
 <li>INT = International number (Without validation check)</li>
 </ul></li>
-<li><code>Primary</code>
+<li><p><code>Primary</code></p>
 
 <ul>
 <li>Fixed value: 203201 </li>
 </ul></li>
+<li><p><code>BankInfo</code></p>
+
+<ul>
+<li>If the request has BankInfo, the BankAccNr, BankAccNr, BankCurrCode, BankTypePrimary, BankName, BankSwiftAddress must be required.</li>
+</ul></li>
+<li><p><code>AdmNr</code> must be required if the request has any params in the body parameters.</p></li>
 </ul>
 <h2 id='creditor-find-api'>Creditor Find API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{creditorID}?AdminNr={AdmNr}"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
@@ -989,7 +1075,7 @@ Notice
 <li>Maximum 10 characters </li>
 </ul></li>
 </ul>
-<h1 id='exact-gt-debtor'>Exact &gt; Debtor</h1><h2 id='debtor-create-api'>Debtor Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors"</span>
+<h1 id='exact-gt-debtor'>Exact &gt; Debtor</h1><h2 id='debtor-create-api'>Debtor Create API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/debtors"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -1027,7 +1113,7 @@ Notice
 </span></code></pre></div>
 <p>This endpoint Create A Debtor.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors</code></p>
+<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/debtors</code></p>
 <h3 id='headers'>Headers</h3>
 <table><thead>
 <tr>
@@ -1101,6 +1187,11 @@ Notice
 <td>Email Address (Optional)</td>
 </tr>
 <tr>
+<td>BankInfo</td>
+<td>Object</td>
+<td>Bank information</td>
+</tr>
+<tr>
 <td>BankInfo.BankAccType</td>
 <td>String</td>
 <td>Bank type - IBA or INT</td>
@@ -1156,7 +1247,7 @@ Notice
 <li>Fixed value: 203201 </li>
 </ul></li>
 </ul>
-<h2 id='debtor-update-api'>Debtor Update API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}"</span>
+<h2 id='debtor-update-api-put'>Debtor Update API (Put)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -1180,21 +1271,23 @@ Notice
         </span><span class="nl">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delf t"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+31 157115100"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@exact.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"BankInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"BankAccType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IBA"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"BankAccNr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL20RABO9038954298"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"BankCurrCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"BankTypePrimary"</span><span class="p">:</span><span class="w"> </span><span class="mi">203201</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"BankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabo bank"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"BankSwiftAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RABONL2U"</span><span class="p">,</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"BankInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"BankAccType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IBA"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"BankAccNr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL20RABO9038954298"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"BankCurrCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"BankTypePrimary"</span><span class="p">:</span><span class="w"> </span><span class="mi">203201</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"BankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabo bank"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"BankSwiftAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RABONL2U"</span><span class="p">,</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
     </span><span class="p">],</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint Update Debtor information (Without Bank Account Information)</p>
+<p>This endpoint Update Debtor information.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>PUT https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}</code></p>
+<p><code>PUT https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1262,6 +1355,41 @@ Notice
 <td>String</td>
 <td>Email Address (Optional)</td>
 </tr>
+<tr>
+<td>BankInfo</td>
+<td>Object</td>
+<td>Bank information</td>
+</tr>
+<tr>
+<td>BankInfo.BankAccType</td>
+<td>String</td>
+<td>Bank type - IBA or INT</td>
+</tr>
+<tr>
+<td>BankInfo.BankAccNr</td>
+<td>String</td>
+<td>Bank account number</td>
+</tr>
+<tr>
+<td>BankInfo.BankCurrCode</td>
+<td>String</td>
+<td>Currency code</td>
+</tr>
+<tr>
+<td>BankInfo.BankTypePrimary</td>
+<td>Number</td>
+<td>Primary</td>
+</tr>
+<tr>
+<td>BankInfo.BankName</td>
+<td>String</td>
+<td>Bank name</td>
+</tr>
+<tr>
+<td>BankInfo.BankSwiftAddress</td>
+<td>String</td>
+<td>Bic/Swift code</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
@@ -1278,7 +1406,7 @@ Notice
 <li>Maximum 10 characters</li>
 </ul></li>
 </ul>
-<h2 id='debtor-update-bank-account-api'>Debtor Update Bank Account API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}/bank-accounts"</span>
+<h2 id='debtor-update-information-patch'>Debtor Update Information (Patch)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}/bank-accounts"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -1324,9 +1452,9 @@ Notice
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint Update Debtor information.</p>
+<p>This endpoint Update Debtor information (With Bank Account).</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}/bank-accounts</code></p>
+<p><code>PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1353,6 +1481,51 @@ Notice
 <td>AdmNr</td>
 <td>Number</td>
 <td>Administration number</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Name (Optional)</td>
+</tr>
+<tr>
+<td>SearchCode</td>
+<td>String</td>
+<td>Search Code (Optional)</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>String</td>
+<td>Country (ISO land code) (Optional)</td>
+</tr>
+<tr>
+<td>PostalCode</td>
+<td>String</td>
+<td>Postal Code (Optional)</td>
+</tr>
+<tr>
+<td>Address1</td>
+<td>String</td>
+<td>Address (Optional)</td>
+</tr>
+<tr>
+<td>City</td>
+<td>String</td>
+<td>City (Optional)</td>
+</tr>
+<tr>
+<td>Telephone</td>
+<td>String</td>
+<td>Telephone Number (Optional)</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>String</td>
+<td>Email Address (Optional)</td>
+</tr>
+<tr>
+<td>BankInfo</td>
+<td>Object</td>
+<td>List Bank Account (Optional)</td>
 </tr>
 <tr>
 <td>BankInfo.BankAccType</td>
@@ -1405,11 +1578,17 @@ Notice
 <li>IBA = International Bank Account number (With validation check)</li>
 <li>INT = International number (Without validation check)</li>
 </ul></li>
-<li><code>Primary</code>
+<li><p><code>Primary</code></p>
 
 <ul>
 <li>Fixed value: 203201 </li>
 </ul></li>
+<li><p><code>BankInfo</code></p>
+
+<ul>
+<li>If the request has BankInfo, the BankAccNr, BankAccNr, BankCurrCode, BankTypePrimary, BankName, BankSwiftAddress must be required.</li>
+</ul></li>
+<li><p><code>AdmNr</code> must be required if the request has any params in the body parameters.</p></li>
 </ul>
 <h2 id='debtor-find-api'>Debtor Find API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/exact/debtors/{DebtorID}?AdminNr={AdmNr}"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
@@ -2078,12 +2257,15 @@ Notice
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52907745-7672-470e-a803-a2f8feb52944"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-07"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"DisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UserTest1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jen Oh"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52907745-7672-470e-a803-a2f8feb52944"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user 2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nl">"PhoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+31 89076414678"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
@@ -2117,19 +2299,24 @@ Notice
 </tr>
 </thead><tbody>
 <tr>
-<td>Email</td>
-<td>String</td>
-<td>Email Register</td>
-</tr>
-<tr>
-<td>Password</td>
-<td>String</td>
-<td>The Password</td>
-</tr>
-<tr>
 <td>ConfirmPassword</td>
 <td>String</td>
 <td>Confirm Password</td>
+</tr>
+<tr>
+<td>Country</td>
+<td>String</td>
+<td>Country (ISO land code)</td>
+</tr>
+<tr>
+<td>DisplayName</td>
+<td>String</td>
+<td>Display Name</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>String</td>
+<td>Email Register</td>
 </tr>
 <tr>
 <td>FirstName</td>
@@ -2142,14 +2329,9 @@ Notice
 <td>Last Name</td>
 </tr>
 <tr>
-<td>DisplayName</td>
+<td>Password</td>
 <td>String</td>
-<td>Display Name</td>
-</tr>
-<tr>
-<td>Birthday</td>
-<td>Date</td>
-<td>Birthday</td>
+<td>The Password</td>
 </tr>
 <tr>
 <td>PhoneNumber</td>
@@ -2157,9 +2339,9 @@ Notice
 <td>Phone Number</td>
 </tr>
 <tr>
-<td>Country</td>
+<td>Role</td>
 <td>String</td>
-<td>Country (ISO land code)</td>
+<td>User/Admin/SuperAdmin</td>
 </tr>
 <tr>
 <td>Status</td>
@@ -2167,11 +2349,38 @@ Notice
 <td>Active/InActive/Blocked</td>
 </tr>
 <tr>
-<td>Role</td>
+<td>TwoFactorAuth</td>
+<td>Object</td>
+<td>TwoFactorAuth</td>
+</tr>
+<tr>
+<td>TwoFactorAuth.Provider</td>
 <td>String</td>
-<td>User/Admin/SuperAdmin</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>TwoFactorAuth.SecretKey</td>
+<td>String</td>
+<td>SecretKey (Optional)</td>
+</tr>
+<tr>
+<td>TwoFactorAuth.Enable</td>
+<td>Boolean</td>
+<td>Enable/Disable</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+Notice
+</aside>
+
+<ul>
+<li><code>TwoFactorAuth.Provider</code>
+
+<ul>
+<li>Fixed value: &quot;google&quot;</li>
+</ul></li>
+</ul>
 <h2 id='user-login-api'>User Login API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/users/login"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
@@ -2229,7 +2438,24 @@ Notice
 <td>String</td>
 <td>The Password</td>
 </tr>
+<tr>
+<td>OTP</td>
+<td>String</td>
+<td>OTP Code</td>
+</tr>
 </tbody></table>
+
+<aside class="notice">
+Notice
+</aside>
+
+<ul>
+<li><code>OTP</code>
+
+<ul>
+<li>Requied if TwoFactorAuth Is Enable</li>
+</ul></li>
+</ul>
 <h1 id='errors'>Errors</h1>
 <p>The FC API uses the following error codes:</p>
 
