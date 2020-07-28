@@ -20,12 +20,15 @@ let kittens = api.kittens.get();
     "success": true,
     "data": [
       {
-        "ID": "52907745-7672-470e-a803-a2f8feb52944",
         "Birthday": "2020-01-07",
         "Country": "NL",
         "DisplayName": "UserTest1",
         "Email": "test@gmail.com",
-        "Name": "Jen Oh",
+        "ID": "52907745-7672-470e-a803-a2f8feb52944",
+        "Name": {
+          "FirstName": "Test",
+          "LastName": "user 2"
+        },
         "PhoneNumber": "+31 89076414678",
         "Role": "User",
         "Status": "Active",
@@ -50,17 +53,27 @@ Content-Type | application/json | Content Type
 
 Parameter | Type | Description
 --------- | ------- | -----------
-Email | String | Email Register
-Password | String | The Password
 ConfirmPassword | String | Confirm Password
+Country | String | Country (ISO land code)
+DisplayName | String | Display Name
+Email | String | Email Register
 FirstName | String | First Name
 LastName | String | Last Name
-DisplayName | String | Display Name
-Birthday | Date | Birthday
+Password | String | The Password
 PhoneNumber | String | Phone Number
-Country | String | Country (ISO land code)
-Status | String | Active/InActive/Blocked
 Role | String | User/Admin/SuperAdmin
+Status | String | Active/InActive/Blocked
+TwoFactorAuth | Object | TwoFactorAuth
+TwoFactorAuth.Provider | String | Provider
+TwoFactorAuth.SecretKey | String | SecretKey (Optional)
+TwoFactorAuth.Enable | Boolean | Enable/Disable
+
+<aside class="notice">
+Notice
+</aside>
+
+- `TwoFactorAuth.Provider`
+    - Fixed value: "google"
 
 
 ## User Login API
@@ -111,6 +124,14 @@ Parameter | Type | Description
 --------- | ------- | -----------
 Email | String | Email Register
 Password | String | The Password
+OTP | String | OTP Code 
+
+<aside class="notice">
+Notice
+</aside>
+
+- `OTP`
+    - Requied if TwoFactorAuth Is Enable
 
 
 

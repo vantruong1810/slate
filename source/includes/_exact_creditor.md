@@ -3,7 +3,7 @@
 ## Creditor Create API
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/creditors"
   -H "Authorization: token_xxx"
 ```
 
@@ -49,7 +49,7 @@ This endpoint Create A Creditor.
 
 ### HTTP Request
 
-`POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors`
+`POST https://fc-api.test.financecenter.sfs360.io/api/v1/creditors`
 
 ### Headers
 Key | Value | Description
@@ -98,10 +98,10 @@ Notice
 - `Primary`
     - Fixed value: 203201 
 
-## Creditor Update API
+## Creditor Update API (Put)
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{creditorID}"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{creditorID}"
   -H "Authorization: token_xxx"
 ```
 
@@ -147,7 +147,7 @@ This endpoint Update Creditor information (Without Bank Account Information)
 
 ### HTTP Request
 
-`PUT https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}`
+`PUT https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}`
 
 ### Query Parameters
 Parameter | Type | Description
@@ -168,6 +168,13 @@ City | String | City
 Telephone | String | Telephone Number (Optional)
 Category | String | Creditor category
 ContactEmail | String | Email Address (Optional)
+BankInfo | Object | List Bank Account (Optional)
+BankInfo.BankAccType | String | Bank type - IBA or INT 
+BankInfo.BankAccNr | String | Bank account number 
+BankInfo.BankCurrCode | String | Currency code 
+BankInfo.BankTypePrimary | Number | Primary
+BankInfo.BankName | String | Bank name 
+BankInfo.BankSwiftAddress | String | Bic/Swift code
 
 <aside class="notice">
 Notice
@@ -182,10 +189,10 @@ Notice
     - PASSAG = passengers
     - HANDEL = all other creditors
 
-## Creditor Update Bank Account API
+## Creditor Update Information (Patch)
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts"
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}"
   -H "Authorization: token_xxx"
 ```
 
@@ -241,7 +248,7 @@ This endpoint Update Creditor information.
 
 ### HTTP Request
 
-`POST https://fc-api.test.financecenter.sfs360.io/api/v1/exact/creditors/{CreditorID}/bank-accounts`
+`PATCH https://fc-api.test.financecenter.sfs360.io/api/v1/creditors/{CreditorID}`
 
 ### Query Parameters
 Parameter | Type | Description
@@ -253,7 +260,16 @@ CreditorID | Number | The SFS Creditor ID (existing in SFS 360 system)
 Parameter | Type | Description
 --------- | ------- | -----------
 AdmNr | Number | Administration number 
-Name | String | Name
+Name | String | Name (Optional)
+SearchCode | String | Search Code (Optional)
+Country | String | Country (ISO land code) (Optional)
+PostalCode | String | Postal Code (Optional)
+Address1 | String | Address (Optional)
+City | String | City (Optional)
+Telephone | String | Telephone Number (Optional)
+Category | String | Creditor category (Optional)
+ContactEmail | String | Email Address (Optional)
+BankInfo | Object | List Bank Account (Optional)
 BankInfo.BankAccType | String | Bank type - IBA or INT 
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
@@ -275,6 +291,11 @@ Notice
     - INT = International number (Without validation check)
 - `Primary`
     - Fixed value: 203201 
+
+- `BankInfo`
+    - If the request has BankInfo, the BankAccNr, BankAccNr, BankCurrCode, BankTypePrimary, BankName, BankSwiftAddress must be required.
+
+- `AdmNr` must be required if the request has any params in the body parameters.
 
 ## Creditor Find API
 
