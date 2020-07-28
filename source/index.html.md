@@ -12,8 +12,7 @@ toc_footers:
 includes:
   - exact_creditor
   - exact_debtor
-  - exact_purchase
-  - exact_sale
+  - exact
   - invoice
   - user
   - errors

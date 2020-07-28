@@ -1,6 +1,6 @@
 # Invoices
 
-## Invoices Add API
+## Invoices Adding API
 
 ```shell
 curl "https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"
