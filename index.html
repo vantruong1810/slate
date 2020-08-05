@@ -2115,23 +2115,20 @@ Notice
 </ul>
 <h1 id='invoices'>Invoices</h1><h2 id='invoices-adding-api'>Invoices Adding API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: token_xxx"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// Updating</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns success JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"XtendisRefID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6572495920"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"InvoiceStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"XtendisRefID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6572495920"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"InvoiceStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
       </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
 <p>The above command returns fail JSON structured like this:</p>
@@ -2141,12 +2138,13 @@ Notice
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"XtendisRefID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6572495920"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"StatusDetails"</span><span class="p">:</span><span class="w"> </span><span class="s2">"please resend"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"InvoiceStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Failed"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"StatusDetails"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please resend"</span><span class="w">
       </span><span class="p">},</span><span class="w">
     </span><span class="p">],</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint Add A Invoice.</p>
+<p>This endpoint to add an invoice.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://fc-api.test.financecenter.sfs360.io/api/v1/invoices</code></p>
 <h3 id='headers'>Headers</h3>
@@ -2169,107 +2167,134 @@ Notice
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Creditor.CreditorID</td>
-<td>Number</td>
-<td>The SFS Creditor ID (existing in SFS 360 system)</td>
-</tr>
-<tr>
-<td>Creditor.CreditorName</td>
-<td>String</td>
-<td>The SFS Creditor name</td>
-</tr>
-<tr>
-<td>Creditor.VatNumber</td>
-<td>String</td>
-<td>The VAT number of the creditor (existing in SFS 360 system)</td>
-</tr>
-<tr>
-<td>Creditor.SepaNumber</td>
-<td>Number</td>
-<td>The SEPA banknumber of the creditor</td>
-</tr>
-<tr>
-<td>Invoice.Admin</td>
+<td>Admin</td>
 <td>String</td>
 <td>Administration</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.BlockCode</td>
-<td>String</td>
-<td>Block Code (Mandatory, Existing in SFS 360 system)</td>
-</tr>
-<tr>
-<td>Invoice.ExternalInvoiceNumber</td>
-<td>String</td>
-<td>External Invoice Number</td>
-</tr>
-<tr>
-<td>Invoice.CreditorID</td>
-<td>Number</td>
-<td>Invoice Creditor ID (existing in SFS 360 system)</td>
-</tr>
-<tr>
-<td>Invoice.XtendisRefID</td>
-<td>String</td>
-<td>Extendis Ref ID</td>
-</tr>
-<tr>
-<td>Invoice.InvoiceID</td>
-<td>Number</td>
-<td>Invoice ID</td>
-</tr>
-<tr>
-<td>Invoice.InvoiceDate</td>
-<td>Date</td>
-<td>Invoice Date (Format YYYYMMDD)</td>
-</tr>
-<tr>
-<td>Invoice.DateOfEntry</td>
-<td>Date</td>
-<td>Date Of Entry (Format YYYYMMDD)</td>
-</tr>
-<tr>
-<td>Invoice.Duplicate</td>
-<td>String</td>
-<td>Duplicate Y/N</td>
-</tr>
-<tr>
-<td>Invoice.AmountExVAT</td>
+<td>AmountExVAT</td>
 <td>Number</td>
 <td>Amount excl. VAT</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.AmountVAT</td>
+<td>AmountVAT</td>
 <td>Number</td>
 <td>Amount VAT</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.Currency</td>
+<td>BlockCode</td>
+<td>String</td>
+<td>Block Code (Existing in SFS 360 system)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CreditorID</td>
+<td>Number</td>
+<td>Invoice Creditor ID (existing in SFS 360 system)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CreditorName</td>
+<td>String</td>
+<td>The SFS Creditor name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Currency</td>
 <td>String</td>
 <td>Currency Code( 3 Character)</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.TotalAMountInclVAT</td>
-<td>Number</td>
-<td>Total Amount Inc. VAT</td>
+<td>DateOfEntry</td>
+<td>Date</td>
+<td>Date Of Entry (Format YYYY-MM-DD)</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.EmailAddressSender</td>
+<td>Duplicate</td>
+<td>String</td>
+<td>Duplicate Y/N</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>EmailAddressSender</td>
 <td>String</td>
 <td>Email Address</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.InvoiceType</td>
+<td>ExternalInvoiceNumber</td>
+<td>String</td>
+<td>External Invoice Number</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>FlightDate</td>
+<td>Date</td>
+<td>Flight Date (Format YYYY-MM-DD)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>FlightNumber</td>
+<td>String</td>
+<td>Flight Number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>InvoiceDate</td>
+<td>Date</td>
+<td>Invoice Date (Format YYYY-MM-DD)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>InvoiceID</td>
+<td>Number</td>
+<td>Invoice ID</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>InvoiceType</td>
 <td>String</td>
 <td>Invoice Type - Values: D or C</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>Invoice.LinkInvoice</td>
+<td>LinkInvoice</td>
 <td>String</td>
 <td>Tthe link to the extendis invoice pdf</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>SepaNumber</td>
+<td>Number</td>
+<td>The SEPA banknumber of the creditor</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>TotalAMountInclVAT</td>
+<td>Number</td>
+<td>Total Amount Inc. VAT</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>VatNumber</td>
+<td>String</td>
+<td>The VAT number of the creditor (existing in SFS 360 system)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XtendisRefID</td>
+<td>String</td>
+<td>Extendis Ref ID</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 
@@ -2376,77 +2401,92 @@ Notice
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Email</td>
 <td>String</td>
-<td>Email Register</td>
+<td>Email Address</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Password</td>
 <td>String</td>
 <td>Password</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>ConfirmPassword</td>
 <td>String</td>
 <td>Confirm Password</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>FirstName</td>
 <td>String</td>
 <td>First Name</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>LastName</td>
 <td>String</td>
 <td>Last Name</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>DisplayName</td>
 <td>String</td>
 <td>Display Name</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Password</td>
 <td>String</td>
 <td>The Password</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Status</td>
 <td>String</td>
 <td>Active/InActive/Blocked</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Role</td>
 <td>String</td>
 <td>User/Admin/SuperAdmin</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Country</td>
 <td>String</td>
 <td>Country (ISO land code)</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>PhoneNumber</td>
 <td>String</td>
 <td>Phone Number</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>TwoFactorAuth</td>
 <td>Object</td>
 <td>TwoFactorAuth</td>
+<td>No</td>
 </tr>
 <tr>
 <td>TwoFactorAuth.Provider</td>
 <td>String</td>
 <td>Provider</td>
+<td>No *</td>
 </tr>
 <tr>
 <td>TwoFactorAuth.Enable</td>
 <td>Boolean</td>
 <td>Enable/Disable</td>
+<td>No *</td>
 </tr>
 </tbody></table>
 
@@ -2459,6 +2499,12 @@ Notice
 
 <ul>
 <li>Fixed value: &quot;google&quot;</li>
+<li>Mandatory if <code>TwoFactorAuth</code> is not empty</li>
+</ul></li>
+<li><code>TwoFactorAuth.Enable</code>
+
+<ul>
+<li>Mandatory if <code>TwoFactorAuth</code> is not empty</li>
 </ul></li>
 </ul>
 <h2 id='user-login-api'>User Login API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://fc-api.test.financecenter.sfs360.io/api/v1/users/login'</span> <span class="se">\</span>
@@ -2509,22 +2555,26 @@ Notice
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Email</td>
 <td>String</td>
-<td>Email Register</td>
+<td>Email Address</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Password</td>
 <td>String</td>
-<td>The Password</td>
+<td>Password</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>OTP</td>
 <td>String</td>
 <td>OTP Code</td>
+<td>No *</td>
 </tr>
 </tbody></table>
 
@@ -2536,7 +2586,7 @@ Notice
 <li><code>OTP</code>
 
 <ul>
-<li>Requied if TwoFactorAuth Is Enable</li>
+<li>Required when <code>TwoFactorAuth</code> is Enabled</li>
 </ul></li>
 </ul>
 <h1 id='errors'>Errors</h1>
