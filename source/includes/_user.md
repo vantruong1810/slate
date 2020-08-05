@@ -68,29 +68,32 @@ Content-Type | application/json | Content Type
 
 ### Body Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
-Email | String | Email Register
-Password | String | Password
-ConfirmPassword | String | Confirm Password
-FirstName | String | First Name
-LastName | String | Last Name
-DisplayName | String | Display Name
-Password | String | The Password
-Status | String | Active/InActive/Blocked
-Role | String | User/Admin/SuperAdmin
-Country | String | Country (ISO land code)
-PhoneNumber | String | Phone Number
-TwoFactorAuth | Object | TwoFactorAuth
-TwoFactorAuth.Provider | String | Provider
-TwoFactorAuth.Enable | Boolean | Enable/Disable
+Parameter | Type | Description | Required
+--------- | ------- | ----------- | -
+Email | String | Email Address | Yes
+Password | String | Password | Yes
+ConfirmPassword | String | Confirm Password | Yes
+FirstName | String | First Name | Yes
+LastName | String | Last Name | Yes
+DisplayName | String | Display Name | Yes
+Password | String | The Password | Yes
+Status | String | Active/InActive/Blocked | Yes
+Role | String | User/Admin/SuperAdmin | Yes
+Country | String | Country (ISO land code) | Yes
+PhoneNumber | String | Phone Number | Yes
+TwoFactorAuth | Object | TwoFactorAuth | No
+TwoFactorAuth.Provider | String | Provider | No *
+TwoFactorAuth.Enable | Boolean | Enable/Disable | No *
 
 <aside class="notice">
 Notice
 </aside>
 
 - `TwoFactorAuth.Provider`
-    - Fixed value: "google"
+    + Fixed value: "google"
+    + Mandatory if `TwoFactorAuth` is not empty
+- `TwoFactorAuth.Enable`
+    + Mandatory if `TwoFactorAuth` is not empty
 
 
 ## User Login API
@@ -140,18 +143,18 @@ Content-Type | application/json | Content Type
 
 ### Body Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
-Email | String | Email Register
-Password | String | The Password
-OTP | String | OTP Code 
+Parameter | Type | Description | Required
+--------- | ------- | ----------- | --
+Email | String | Email Address | Yes
+Password | String | Password | Yes
+OTP | String | OTP Code | No *
 
 <aside class="notice">
 Notice
 </aside>
 
 - `OTP`
-    - Requied if TwoFactorAuth Is Enable
+  + Required when `TwoFactorAuth` is Enabled
 
 
 

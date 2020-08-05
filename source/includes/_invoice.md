@@ -8,24 +8,21 @@ curl "https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+// Updating
 ```
 
 > The above command returns success JSON structured like this:
 
 ```json
 {
-    "success": true,
-    "data": [
+  "success": true,
+  "data": [
       {
-        "XtendisRefID": "6572495920",
-        "InvoiceStatus": "OK",
+          "XtendisRefID": "6572495920",
+          "InvoiceStatus": "OK"
       }
-    ]
-  }
+  ]
+}
 ```
 
 > The above command returns fail JSON structured like this:
@@ -36,13 +33,14 @@ let kittens = api.kittens.get();
     "data": [
       {
         "XtendisRefID": "6572495920",
-        "StatusDetails": "please resend",
+        "InvoiceStatus": "Failed",
+        "StatusDetails": "Please resend"
       },
     ],
   }
 ```
 
-This endpoint Add A Invoice.
+This endpoint to add an invoice.
 
 ### HTTP Request
 
@@ -56,28 +54,29 @@ Authorization | {{jwtToken}} | Token
 
 ### Body Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
-Creditor.CreditorID | Number | The SFS Creditor ID (existing in SFS 360 system)
-Creditor.CreditorName | String | The SFS Creditor name
-Creditor.VatNumber | String | The VAT number of the creditor (existing in SFS 360 system)
-Creditor.SepaNumber | Number | The SEPA banknumber of the creditor
-Invoice.Admin | String | Administration
-Invoice.BlockCode | String | Block Code (Mandatory, Existing in SFS 360 system)
-Invoice.ExternalInvoiceNumber | String | External Invoice Number
-Invoice.CreditorID | Number | Invoice Creditor ID (existing in SFS 360 system)
-Invoice.XtendisRefID | String | Extendis Ref ID
-Invoice.InvoiceID | Number | Invoice ID
-Invoice.InvoiceDate | Date | Invoice Date (Format YYYYMMDD)
-Invoice.DateOfEntry |  Date | Date Of Entry (Format YYYYMMDD)
-Invoice.Duplicate | String | Duplicate Y/N 
-Invoice.AmountExVAT | Number | Amount excl. VAT 
-Invoice.AmountVAT | Number | Amount VAT
-Invoice.Currency | String | Currency Code( 3 Character)
-Invoice.TotalAMountInclVAT | Number | Total Amount Inc. VAT
-Invoice.EmailAddressSender | String | Email Address
-Invoice.InvoiceType | String | Invoice Type - Values: D or C
-Invoice.LinkInvoice | String | Tthe link to the extendis invoice pdf
+Parameter | Type | Description | Required
+--------- | ------- | ----------- | -
+Admin | String | Administration | Yes
+AmountExVAT | Number | Amount excl. VAT | Yes
+AmountVAT | Number | Amount VAT | Yes
+BlockCode | String | Block Code (Existing in SFS 360 system) | Yes
+CreditorID | Number | Invoice Creditor ID (existing in SFS 360 system) | Yes
+CreditorName | String | The SFS Creditor name | Yes
+Currency | String | Currency Code( 3 Character) | Yes
+DateOfEntry |  Date | Date Of Entry (Format YYYY-MM-DD) | Yes
+Duplicate | String | Duplicate Y/N | Yes
+EmailAddressSender | String | Email Address | Yes
+ExternalInvoiceNumber | String | External Invoice Number | Yes
+FlightDate | Date | Flight Date (Format YYYY-MM-DD) | No
+FlightNumber | String | Flight Number | No
+InvoiceDate | Date | Invoice Date (Format YYYY-MM-DD) | Yes
+InvoiceID | Number | Invoice ID | Yes
+InvoiceType | String | Invoice Type - Values: D or C | Yes
+LinkInvoice | String | Tthe link to the extendis invoice pdf | Yes
+SepaNumber | Number | The SEPA banknumber of the creditor | Yes
+TotalAMountInclVAT | Number | Total Amount Inc. VAT | Yes
+VatNumber | String | The VAT number of the creditor (existing in SFS 360 system) | Yes
+XtendisRefID | String | Extendis Ref ID | Yes
 
 <aside class="notice">
 Notice
