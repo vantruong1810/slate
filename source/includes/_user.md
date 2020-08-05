@@ -3,38 +3,55 @@
 ## User Registration API
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/users/register"
+curl --location --request POST 'https://fc-api.test.financecenter.sfs360.io/api/v1/users/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Email": "user@sfs360.io",
+    "Password": "Password",
+    "ConfirmPassword": "Password",
+    "FirstName": "John",
+    "LastName": "Doe",
+    "DisplayName": "John Doe",
+    "Status": "Active",
+    "Role": "Admin",
+    "Country": "NL",
+    "PhoneNumber": "+31638319078",
+    "TwoFactorAuth": {
+        "Provider": "google",
+        "Enable": true
+    }
+}'
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+// Updating
 ```
 
 > The above command returns success JSON structured like this:
 
 ```json
 {
-    "success": true,
-    "data": [
+  "success": true,
+  "data": [
       {
-        "Birthday": "2020-01-07",
-        "Country": "NL",
-        "DisplayName": "UserTest1",
-        "Email": "test@gmail.com",
-        "ID": "52907745-7672-470e-a803-a2f8feb52944",
-        "Name": {
-          "FirstName": "Test",
-          "LastName": "user 2"
-        },
-        "PhoneNumber": "+31 89076414678",
-        "Role": "User",
-        "Status": "Active",
-      },
-    ],
-  }
+          "ID": "90875c91-7899446-462676-9e908802-59b887c6f",
+          "Email": "user@sfs360.io",
+          "Role": "Admin",
+          "Status": "Active",
+          "Country": "NL",
+          "DisplayName": "John Doe",
+          "Name": {
+              "FirstName": "John",
+              "LastName": "Doe"
+          },
+          "PhoneNumber": "+31638319078",
+          "TwoFactorAuth": {
+            "Provider": "google",
+            "Enable": true
+          }
+      }
+  ]
+}
 ```
 
 This endpoint Register A User.
@@ -53,19 +70,19 @@ Content-Type | application/json | Content Type
 
 Parameter | Type | Description
 --------- | ------- | -----------
-ConfirmPassword | String | Confirm Password
-Country | String | Country (ISO land code)
-DisplayName | String | Display Name
 Email | String | Email Register
+Password | String | Password
+ConfirmPassword | String | Confirm Password
 FirstName | String | First Name
 LastName | String | Last Name
+DisplayName | String | Display Name
 Password | String | The Password
-PhoneNumber | String | Phone Number
-Role | String | User/Admin/SuperAdmin
 Status | String | Active/InActive/Blocked
+Role | String | User/Admin/SuperAdmin
+Country | String | Country (ISO land code)
+PhoneNumber | String | Phone Number
 TwoFactorAuth | Object | TwoFactorAuth
 TwoFactorAuth.Provider | String | Provider
-TwoFactorAuth.SecretKey | String | SecretKey (Optional)
 TwoFactorAuth.Enable | Boolean | Enable/Disable
 
 <aside class="notice">
@@ -79,14 +96,17 @@ Notice
 ## User Login API
 
 ```shell
-curl "https://fc-api.test.financecenter.sfs360.io/api/v1/users/login"
+curl --location --request POST 'https://fc-api.test.financecenter.sfs360.io/api/v1/users/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Password": "Password",
+    "Email": "user@sfs360.io",
+    "OTP": "123456"
+}'
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+// Updating
 ```
 
 > The above command returns success JSON structured like this:
@@ -96,7 +116,7 @@ let kittens = api.kittens.get();
     "success": true,
     "data": [
       {
-        "Email": "sfs@gmail.com",
+        "Email": "user@sfs360.io",
         "AccessToken":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjViYmQ0NzkzLTcxZDMtNDJjMS04MzM0LTg1MTdhODE3MTQxNiIsIkVtYWlsIjoiYmJiQGdtYWlsLmNvbSIsIlJvbGUiOiJVc2VyIiwiaWF0IjoxNTk0Mjk0MDI3fQ.KgoWredsavxn9_bvEG3CYhM_W5rLNCTZHqx2j7aWZMM",
         "RefreshToken":
