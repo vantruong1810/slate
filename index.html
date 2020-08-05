@@ -2307,34 +2307,51 @@ Notice
 <li>D=Debit  C=Credit</li>
 </ul></li>
 </ul>
-<h1 id='user'>User</h1><h2 id='user-registration-api'>User Registration API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/users/register"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<h1 id='user'>User</h1><h2 id='user-registration-api'>User Registration API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://fc-api.test.financecenter.sfs360.io/api/v1/users/register'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "Email": "user@sfs360.io",
+    "Password": "Password",
+    "ConfirmPassword": "Password",
+    "FirstName": "John",
+    "LastName": "Doe",
+    "DisplayName": "John Doe",
+    "Status": "Active",
+    "Role": "Admin",
+    "Country": "NL",
+    "PhoneNumber": "+31638319078",
+    "TwoFactorAuth": {
+        "Provider": "google",
+        "Enable": true
+    }
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// Updating</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns success JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"Birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-07"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"DisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UserTest1"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52907745-7672-470e-a803-a2f8feb52944"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nl">"FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user 2"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"PhoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+31 89076414678"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+          </span><span class="nl">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90875c91-7899446-462676-9e908802-59b887c6f"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@sfs360.io"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"DisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"PhoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+31638319078"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"TwoFactorAuth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint Register A User.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -2362,24 +2379,19 @@ Notice
 </tr>
 </thead><tbody>
 <tr>
-<td>ConfirmPassword</td>
-<td>String</td>
-<td>Confirm Password</td>
-</tr>
-<tr>
-<td>Country</td>
-<td>String</td>
-<td>Country (ISO land code)</td>
-</tr>
-<tr>
-<td>DisplayName</td>
-<td>String</td>
-<td>Display Name</td>
-</tr>
-<tr>
 <td>Email</td>
 <td>String</td>
 <td>Email Register</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>String</td>
+<td>Password</td>
+</tr>
+<tr>
+<td>ConfirmPassword</td>
+<td>String</td>
+<td>Confirm Password</td>
 </tr>
 <tr>
 <td>FirstName</td>
@@ -2392,14 +2404,19 @@ Notice
 <td>Last Name</td>
 </tr>
 <tr>
+<td>DisplayName</td>
+<td>String</td>
+<td>Display Name</td>
+</tr>
+<tr>
 <td>Password</td>
 <td>String</td>
 <td>The Password</td>
 </tr>
 <tr>
-<td>PhoneNumber</td>
+<td>Status</td>
 <td>String</td>
-<td>Phone Number</td>
+<td>Active/InActive/Blocked</td>
 </tr>
 <tr>
 <td>Role</td>
@@ -2407,9 +2424,14 @@ Notice
 <td>User/Admin/SuperAdmin</td>
 </tr>
 <tr>
-<td>Status</td>
+<td>Country</td>
 <td>String</td>
-<td>Active/InActive/Blocked</td>
+<td>Country (ISO land code)</td>
+</tr>
+<tr>
+<td>PhoneNumber</td>
+<td>String</td>
+<td>Phone Number</td>
 </tr>
 <tr>
 <td>TwoFactorAuth</td>
@@ -2420,11 +2442,6 @@ Notice
 <td>TwoFactorAuth.Provider</td>
 <td>String</td>
 <td>Provider</td>
-</tr>
-<tr>
-<td>TwoFactorAuth.SecretKey</td>
-<td>String</td>
-<td>SecretKey (Optional)</td>
 </tr>
 <tr>
 <td>TwoFactorAuth.Enable</td>
@@ -2444,11 +2461,14 @@ Notice
 <li>Fixed value: &quot;google&quot;</li>
 </ul></li>
 </ul>
-<h2 id='user-login-api'>User Login API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fc-api.test.financecenter.sfs360.io/api/v1/users/login"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<h2 id='user-login-api'>User Login API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://fc-api.test.financecenter.sfs360.io/api/v1/users/login'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "Password": "Password",
+    "Email": "user@sfs360.io",
+    "OTP": "123456"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="c1">// Updating</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns success JSON structured like this:</p>
@@ -2457,7 +2477,7 @@ Notice
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sfs@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@sfs360.io"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"AccessToken"</span><span class="p">:</span><span class="w">
           </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjViYmQ0NzkzLTcxZDMtNDJjMS04MzM0LTg1MTdhODE3MTQxNiIsIkVtYWlsIjoiYmJiQGdtYWlsLmNvbSIsIlJvbGUiOiJVc2VyIiwiaWF0IjoxNTk0Mjk0MDI3fQ.KgoWredsavxn9_bvEG3CYhM_W5rLNCTZHqx2j7aWZMM"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"RefreshToken"</span><span class="p">:</span><span class="w">
