@@ -19,7 +19,7 @@ curl "https://fc-api.test.financecenter.sfs360.io/api/v1/invoices"
   "data": [
       {
           "XtendisRefID": "6572495920",
-          "InvoiceStatus": "OK"
+          "InvoiceStatus": "Success!"
       }
   ]
 }
@@ -72,10 +72,10 @@ FlightNumber | String | Flight Number | No
 InvoiceDate | Date | Invoice Date (Format YYYY-MM-DD) | Yes
 InvoiceID | Number | Invoice ID | Yes
 InvoiceType | String | Invoice Type - Values: D or C | Yes
-LinkInvoice | String | Tthe link to the extendis invoice pdf | Yes
-SepaNumber | Number | The SEPA banknumber of the creditor | Yes
+LinkInvoice | String | Tthe link to the extendis invoice pdf | No
+SepaNumber | Number | The SEPA banknumber of the creditor | No
 TotalAMountInclVAT | Number | Total Amount Inc. VAT | Yes
-VatNumber | String | The VAT number of the creditor (existing in SFS 360 system) | Yes
+VatNumber | String | The VAT number of the creditor (existing in SFS 360 system) | No
 XtendisRefID | String | Extendis Ref ID | Yes
 
 <aside class="notice">
