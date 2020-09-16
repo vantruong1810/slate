@@ -60,7 +60,6 @@ Authorization | {{jwtToken}} | Token
 
 Parameter | Type | Description
 --------- | ------- | -----------
-Debtor | Number | The SFS Debtor ID (existing in SFS 360 system)
 AdmNr | Number | Administration number 
 Name | String | Name
 SearchCode | String | Search Code
@@ -82,11 +81,6 @@ BankInfo.BankSwiftAddress | String | Bic/Swift code
 <aside class="notice">
 Notice
 </aside>
-
-- `Debtor`
-    - Should be started with one of numbers 4, 5, 6.
-    - If remove first number, the rest has to greater than 0.
-    - Maximum 10 characters  
 - `Bank Type`
     - IBA = International Bank Account number (With validation check)
     - INT = International number (Without validation check)
@@ -247,18 +241,18 @@ DebtorID | Number | The SFS Debtor ID (existing in SFS 360 system)
 
 ### Body Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
-AdmNr | Number | Administration number 
-Name | String | Name (Optional)
-SearchCode | String | Search Code (Optional)
-Country | String | Country (ISO land code) (Optional)
-PostalCode | String | Postal Code (Optional)
-Address1 | String | Address (Optional)
-City | String | City (Optional)
-Telephone | String | Telephone Number (Optional)
-Email | String | Email Address (Optional)
-BankInfo | Object | List Bank Account (Optional)
+Parameter | Type | Description | Required
+--------- | ------- | ----------- | -----------
+AdmNr | Number | Administration number | Yes
+Name | String | Name | No
+SearchCode | String | Search Code | No
+Country | String | Country (ISO land code) | No
+PostalCode | String | Postal Code | No
+Address1 | String | Address | No
+City | String | City | No
+Telephone | String | Telephone Number | No
+Email | String | Email Address | No
+BankInfo | Object | List Bank Account | No
 BankInfo.BankAccType | String | Bank type - IBA or INT 
 BankInfo.BankAccNr | String | Bank account number 
 BankInfo.BankCurrCode | String | Currency code 
@@ -353,3 +347,72 @@ Notice
     - If remove first number, the rest has to greater than 0.
     - Minimum 7 characters
     - Maximum 10 characters 
+
+## Debtor Find API From FC
+
+```shell
+curl "https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}"
+  -H "Authorization: token_xxx"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let kittens = api.kittens.get();
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "data": [
+      {
+        "Name": "test1",
+        "SearchCode": "PAX1",
+        "Country": "NL",
+        "PostalCode": "2629 JD",
+        "City": "HO CHI MINH",
+        "Address": "ho chi minh",
+        "Telephone": "+0084938979056",
+        "Email": "testmail@gmail.com",
+        "JournalNr": "0",
+        "VatCode": "",
+        "BankAccountNr": [
+            "NL05 ABNA 8014 5589 28",
+            "NL12 RABO 5515 4397 24",
+            "NL38 ABNA 4824 5388 31",
+            "NL48 INGB 3470 4166 56",
+            "NL73 RABO 5982 4824 71",
+            "NL88 ABNA 9589 6038 58",
+            "NL88 RABO 8871 0076 62"
+        ]
+        }
+    ],
+}
+```
+
+This endpoint Find A Debtor
+
+### HTTP Request
+
+`GET https://fc-api.test.financecenter.sfs360.io/api/v1/debtors/{DebtorID}`
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+DebtorID | Number | The SFS Debtor ID (existing in SFS 360 system) 
+
+<aside class="notice">
+Notice
+</aside>
+
+- `DebtorID`
+    - Should be started with one of numbers 4, 5, 6.
+    - If remove first number, the rest has to greater than 0.
+    - Minimum 7 characters
+    - Maximum 10 characters 
+
+
